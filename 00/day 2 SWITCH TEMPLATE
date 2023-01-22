@@ -1,0 +1,18 @@
+Template_CoreSW:
+config t
+vlan 25
+ name ____.com
+ exit
+ Int vlan 25
+  no shut
+   ip add 10.0._._ 255.255._._
+  ip dhcp excluded-add 10.0._._ 10.0._._
+  ip dhcp pool ___.com
+    network 10.0._._ 255.255._._
+	default-router 10.0._._
+	domain-name ___.com
+	dns-server 10.51.1.10
+	option 150 ip 10.51.100.8
+	Int Fa 0/7
+	 swi acc vlan 25
+	 do sh ip dhcp binding
